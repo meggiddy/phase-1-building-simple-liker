@@ -9,7 +9,7 @@ const modal = document.getElementById("modal");
 
 liked.forEach((element) => {
   element.innerHTML = EMPTY_HEART;
-  
+
   element.addEventListener("click", () => {
     mimicServerCall()
       .then(() => {
@@ -18,12 +18,11 @@ liked.forEach((element) => {
         element.innerText = FULL_HEART;
         element.classList.toggle("activated-heart");
         //and reverse
-        //liked.innerHTML = EMPTY_HEART;
       })
       //display the server error message in the modal
-      .catch(() => {
+      .catch((error) => {
         modal.classList.remove("hidden");
-        modal.innerHTML = "There was an error processing your request.";
+        modal.innerHTML = error;
         //remove the hidden class from the modal
         //add modal class to hide the modal
         setTimeout(() => {
